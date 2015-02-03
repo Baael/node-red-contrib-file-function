@@ -12,7 +12,7 @@
   limitations under the License.
 -->
 
-<script type="text/x-red" data-template-name="file function">
+<script type="text/x-red" data-template-name="file-function">
     <div class="form-row node-input-filename">
          <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
@@ -36,53 +36,34 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="file function">
-
-    <p>Just like the core node "function", only that this node loads the script to be
-    executed from an actual file on your drive.</p>
-
-    <p>This may help you developing for Node RED. Instead of having to write your Javascript
-    code in that small textfield in your browser you can use your favorite editor/IDE.</p>
-
-    <p>The filename can be overridden by the <code>msg.filename</code> property of the incoming message.</p>
-
-    <p>The file path will be relative from the path set in <code>settings.userDir</code>,
-    or if not set; relative to your Node-RED root directory.</p>
-
-    <p>Writing functions in this node works works just like functions in the the original
-    function node (except that you write it in an actual file and no in an input field)</p>
-
-    <p>See the <a target="_blank" href="https://github.com/emiloberg/node-red-contrib-file-function">online documentation for more help</a>.</p>
-
-    <p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">Node-RED documentation on functions</a> for more help on functions.</p>
-
-
-
-</script>
-
 <script type="text/javascript">
-    RED.nodes.registerType('file function',{
-        color:"#fdd0a2",
-        category: 'function',
+    RED.nodes.registerType('file-function',{
+
+        color:    "AntiqueWhite",
+        category: "function",
+        inputs:   1,
+        outputs:  1,
+        icon:     "file-function-icon.png",
+
         defaults: {
-            name: {value:""},
-            filename: {value:""},
+            name:       {value:""},
+            filename:   {value:""},
             reloadfile: {value:true},
-            outputs: {value:1}
+            outputs:    {value:1}
         },
-        inputs:1,
-        outputs:1,
-        icon: "file-function-icon.png",
+
+
         label: function() {
-            return this.name || this.filename || 'file function';
+            return  "script: " + (this.name || this.filename || 'file-function');
         },
+
         labelStyle: function() {
             return this.name ? "node_label_italic" : "";
         },
+
         oneditprepare: function() {
-            $( "#node-input-outputs" ).spinner({
-                min:1
-            });
+            $( "#node-input-outputs" ).spinner({ min:1 });
         }
+
     });
 </script>
